@@ -3,6 +3,7 @@ import copy
 # Build the dictionaries to transliterate Serbian cyrillic to latin and vice versa.
 
 # This dictionary is to transliterate from cyrillic to latin.
+# MM orginal matches to LC tables
 SR_CYR_TO_LAT_DICT = {
     u'А': u'A', u'а': u'a',
     u'Б': u'B', u'б': u'b',
@@ -85,6 +86,7 @@ MK_CYR_TO_LAT_DICT[u'ќ'] = u'ḱ'
 MK_LAT_TO_CYR_DICT = {y: x for x, y in iter(MK_CYR_TO_LAT_DICT.items())}
 
 # This dictionary is to transliterate from Russian cyrillic to latin.
+# MM: Updated to LC tables
 RU_CYR_TO_LAT_DICT = {
     u"А": u"A", u"а": u"a",
     u"Б": u"B", u"б": u"b",
@@ -92,11 +94,12 @@ RU_CYR_TO_LAT_DICT = {
     u"Г": u"G", u"г": u"g",
     u"Д": u"D", u"д": u"d",
     u"Е": u"E", u"е": u"e",
-    u"Ё": u"YO", u"ё": u"yo",
-    u"Ж": u"ZH", u"ж": u"zh",
+    u"Ё": u"Ë", u"ё": u"ë",
+    u"Ж": u"Zh", u"ж": u"zh",
     u"З": u"Z", u"з": u"z",
     u"И": u"I", u"и": u"i",
-    u"Й": u"J", u"й": u"j",
+    u"І": u"Ī", u"i": u"ī",
+    u"Й": u"Ĭ", u"й": u"ĭ",
     u"К": u"K", u"к": u"k",
     u"Л": u"L", u"л": u"l",
     u"М": u"M", u"м": u"m",
@@ -108,21 +111,26 @@ RU_CYR_TO_LAT_DICT = {
     u"Т": u"T", u"т": u"t",
     u"У": u"U", u"у": u"u",
     u"Ф": u"F", u"ф": u"f",
-    u"Х": u"H", u"х": u"h",
-    u"Ц": u"C", u"ц": u"c",
-    u"Ч": u"CH", u"ч": u"ch",
-    u"Ш": u"SH", u"ш": u"sh",
-    u"Щ": u"SZ", u"щ": u"sz",
-    u"Ъ": u"#", u"ъ": u"#",
+    u"Х": u"Kh", u"х": u"kh",
+    u"Ц": u"T͡S", u"ц": u"t͡s",
+    u"Ч": u"Ch", u"ч": u"ch",
+    u"Ш": u"Sh", u"ш": u"sh",
+    u"Щ": u"Shch", u"щ": u"shch",
+    u"Ъ": u"ʺ", u"ъ": u"ʺ",
     u"Ы": u"Y", u"ы": u"y",
-    u"Ь": u"'", u"ь": u"'",
-    u"Э": u"EH", u"э": u"eh",
-    u"Ю": u"JU", u"ю": u"ju",
-    u"Я": u"JA", u"я": u"ja",
+    u"Ь": u"ʹ", u"ь": u"ʹ",
+    u"Ѣ": u"I͡E", u"ѣ": u"i͡e",
+    u"Э": u"Ė", u"э": u"ė",
+    u"Ю": u"I͡U", u"ю": u"i͡u",
+    u"Я": u"I͡A", u"я": u"i͡a",
+    u"Ѳ": u"Ḟ", u"ѳ": u"ḟ",
+    u"Ѵ": u"Ẏ", u"ѵ": u"ẏ",
+
 }
 
 # This dictionary is to transliterate from Russian latin to cyrillic.
 RU_LAT_TO_CYR_DICT = {y: x for x, y in RU_CYR_TO_LAT_DICT.items()}
+# MM: Not updated to LC tables
 RU_LAT_TO_CYR_DICT.update({
     u"X": u"Х", u"x": u"х",
     u"W": u"Щ", u"w": u"щ",
@@ -186,16 +194,16 @@ del BG_CYR_TO_LAT_DICT[u"Э"]
 del BG_CYR_TO_LAT_DICT[u"э"]
 
 # Some letters that are pronounced diferently
-BG_CYR_TO_LAT_DICT[u"Й"] = u"Y"
-BG_CYR_TO_LAT_DICT[u"й"] = u"y"
-BG_CYR_TO_LAT_DICT[u"Ц"] = u"TS"
-BG_CYR_TO_LAT_DICT[u"ц"] = u"ts"
+BG_CYR_TO_LAT_DICT[u"Й"] = u"Ĭ"
+BG_CYR_TO_LAT_DICT[u"й"] = u"ĭ"
+# BG_CYR_TO_LAT_DICT[u"Ц"] = u"TS"
+# BG_CYR_TO_LAT_DICT[u"ц"] = u"ts"
 BG_CYR_TO_LAT_DICT[u"Щ"] = u"SHT"
 BG_CYR_TO_LAT_DICT[u"щ"] = u"sht"
-BG_CYR_TO_LAT_DICT[u"Ю"] = u"YU"
-BG_CYR_TO_LAT_DICT[u"ю"] = u"yu"
-BG_CYR_TO_LAT_DICT[u"Я"] = u"YA"
-BG_CYR_TO_LAT_DICT[u"я"] = u"ya"
+# BG_CYR_TO_LAT_DICT[u"Ю"] = u"YU"
+# BG_CYR_TO_LAT_DICT[u"ю"] = u"yu"
+# BG_CYR_TO_LAT_DICT[u"Я"] = u"YA"
+# BG_CYR_TO_LAT_DICT[u"я"] = u"ya"
 # The following letters use the pre-2012 "Andreichin" system for lettering, 
 # because in the newest "Ivanov" system "a" and "y" translate to two Bulgarian
 # letters and choosing to which one depends on the word and text context
